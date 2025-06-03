@@ -24,10 +24,13 @@
 <tbody id="table-body"></tbody>
 </table>
 <script>
+   // コメントとして表示したい内容
+   const comment = "これはコメントです。";
+   // 「today」IDのpタグにコメントを表示
+   document.getElementById("today").textContent = comment;
+
+   // 以降、出社データの表示処理（元のまま）
    const dataUrl = "data.json"; // 出社データJSON
-   const today = new Date();
-   document.getElementById("today").textContent =
-     `${today.getFullYear()}年${today.getMonth()+1}月${today.getDate()}日`;
    fetch(dataUrl)
      .then(res => res.json())
      .then(data => {
