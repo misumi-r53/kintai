@@ -5,41 +5,57 @@
 <title>出社状況</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <style>
-  body { font-family: sans-serif; padding: 1rem; }
-  table { width: 100%; border-collapse: collapse; }
-  th, td { border: 1px solid #ccc; padding: 0.5rem; text-align: left; }
-  th { background: #f0f0f0; }
-  input[type="text"] { width: 98%; }
+
+   body { font-family: sans-serif; padding: 1rem; }
+
+   table { width: 100%; border-collapse: collapse; }
+
+   th, td { border: 1px solid #ccc; padding: 0.5rem; text-align: left; }
+
+   th { background: #f0f0f0; }
 </style>
 </head>
 <body>
 <h1>出勤時間一覧</h1>
+<p id="today"></p>
 <table>
 <thead>
 <tr>
 <th>名前</th>
 <th>出勤時間</th>
-<th>コメント</th>
 </tr>
 </thead>
 <tbody id="table-body"></tbody>
 </table>
 <script>
-  const dataUrl = "data.json"; // 出社データJSON
-  fetch(dataUrl)
-    .then(res => res.json())
-    .then(data => {
-      const tbody = document.getElementById("table-body");
-      data.forEach(employee => {
-        const tr = document.createElement("tr");
-        tr.innerHTML = `
-          <td>${employee.name}</td>
-          <td>${employee.time || "未出社"}</td>
-          <td><input type="text" placeholder="コメントを入力"></td>
-        `;
-        tbody.appendChild(tr);
-      });
-    });
+
+   const dataUrl = "data.json"; // 出社データJSON
+
+   const today = new Date();
+
+   document.getElementById("today").textContent =
+
+     `${today.getFullYear()}年${today.getMonth()+1}月${today.getDate()}日`;
+
+   fetch(dataUrl)
+
+     .then(res => res.json())
+
+     .then(data => {
+
+       const tbody = document.getElementById("table-body");
+
+       data.forEach(employee => {
+
+         const tr = document.createElement("tr");
+
+         tr.innerHTML = `<td>${employee.name}</td><td>${employee.time || "未出社"}</td>`;
+
+         tbody.appendChild(tr);
+
+       });
+
+     });
 </script>
 </body>
 </html>
