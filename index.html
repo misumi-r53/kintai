@@ -9,7 +9,7 @@
   table { width: 100%; border-collapse: collapse; }
   th, td { border: 1px solid #ccc; padding: 0.5rem; text-align: left; }
   th { background: #f0f0f0; }
-  textarea { width: 100%; min-height: 2em; }
+  input[type="text"] { width: 98%; }
 </style>
 </head>
 <body>
@@ -17,8 +17,9 @@
 <table>
 <thead>
 <tr>
-<th>IT中村</th>
-<th>自由にコメントできる項目</th>
+<th>名前</th>
+<th>出勤時間</th>
+<th>コメント</th>
 </tr>
 </thead>
 <tbody id="table-body"></tbody>
@@ -33,7 +34,8 @@
         const tr = document.createElement("tr");
         tr.innerHTML = `
           <td>${employee.name}</td>
-          <td><textarea placeholder="コメントを入力してください"></textarea></td>
+          <td>${employee.time || "未出社"}</td>
+          <td><input type="text" placeholder="コメントを入力"></td>
         `;
         tbody.appendChild(tr);
       });
