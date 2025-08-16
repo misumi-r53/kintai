@@ -1,55 +1,46 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-<meta charset="UTF-8">
-<title>出社状況</title>
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<style>
-   body { font-family: sans-serif; padding: 1rem; }
-   table { width: 100%; border-collapse: collapse; }
-   th, td { border: 1px solid #ccc; padding: 0.5rem; text-align: left; }
-   th { background: #f0f0f0; }
-</style>
+  <meta charset="UTF-8">
+  <title>勤怠管理TOP</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body { font-family: sans-serif; padding: 2rem; background: #f8f8f8; }
+    h1 { margin-bottom: 1.5rem; }
+    nav { margin-bottom: 2rem; }
+    ul.menu {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: flex;
+      gap: 1.5rem;
+    }
+    ul.menu li {
+      background: #e9faf9;
+      border: 1px solid #778ca3;
+      border-radius: 6px;
+      padding: 1rem 2rem;
+      font-size: 1.1rem;
+      transition: background 0.2s;
+    }
+    ul.menu li:hover {
+      background: #d0f0f7;
+    }
+    ul.menu li a {
+      text-decoration: none;
+      color: #333;
+      font-weight: bold;
+    }
+  </style>
 </head>
 <body>
-<h1>出勤時間一覧</h1>
-<p id="today"></p>
-<table>
-<thead>
-<tr>
-<th>名前</th>
-<th>出勤時間</th>
-</tr>
-</thead>
-<tbody id="table-body"></tbody>
-</table>
-<script>
-   // コメントとして表示したい内容
-   const comment = "8/16（土）出勤時間";
-   // 「today」IDのpタグにコメントを表示
-   document.getElementById("today").textContent = comment;
-
-   // 以降、出社データの表示処理（元のまま）
-   const dataUrl = "data.json"; // 出社データJSON
-   fetch(dataUrl)
-     .then(res => res.json())
-     .then(data => {
-       const tbody = document.getElementById("table-body");
-       data.forEach(employee => {
-         const tr = document.createElement("tr");
-         tr.innerHTML = `<td>${employee.name}</td><td>${employee.time || "未出社"}</td>`;
-         tbody.appendChild(tr);
-       });
-     });
-</script>
+  <h1>勤怠管理メニュー</h1>
+  <nav>
+    <ul class="menu">
+      <li><a href="attendance.html">MTO入荷</a></li>
+      <li><a href="#">N梱包_特定流通</a></li>
+    </ul>
+  </nav>
+  <p>ご利用になりたいメニューを選択してください。</p>
 </body>
 </html>
-
-
-
-
-
-
-
-
-
